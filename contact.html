@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | The Dimensions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background-color: #000;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: #a306ff; /* futuristic purple */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s, transform 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #a306ff; /* futuristic purple */
+            transform: translateY(-3px);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #a306ff; /* futuristic purple */
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #0a0a1a;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: #ccc;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 1s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .content-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background-color: #000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .content-section.visible h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .content-section.visible p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .contact-section {
+            background-color: #0a0a1a;
+            padding: 6rem 2rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .map-container {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(30%) brightness(80%);
+        }
+
+        .address-info {
+            margin-bottom: 2rem;
+        }
+
+        .address-line {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .address-line i {
+            margin-right: 0.8rem;
+            color: #a306ff;
+            width: 20px;
+            text-align: center;
+        }
+
+        .email-line {
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .email-line i {
+            margin-right: 0.8rem;
+            color: #a306ff;
+            width: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: #a306ff;
+            transform: translateY(-5px);
+        }
+
+        .social-link i {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .contact-form {
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .content-section.visible .contact-form {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.4s;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #222;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #a306ff; /* futuristic purple */
+        }
+
+        .form-control textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .separator {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #333, transparent);
+            margin: 4rem auto;
+            width: 80%;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info, .contact-form {
+                max-width: 100%;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">The Dimensions</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>Let's create something extraordinary together</p>
+        </div>
+    </section>
+
+    <section class="content-section contact-section">
+        <h2>Get In Touch</h2>
+        <p>We'd love to hear from you. Whether you have a project in mind, want to collaborate, or just have a question, don't hesitate to reach out.</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="map-container">
+                    <!-- Embedded Google Map -->
+                    <iframe src="https://maps.app.goo.gl/UdQdWRRwTwLiYr1G7" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="address-info">
+                    <div class="address-line">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Aditya Tower, Behind Panasonic Showroom, Sharanpur Link Road, Canada Corner, Nashik 422005</span>
+                    </div>
+                    <div class="email-line">
+                        <i class="fas fa-envelope"></i>
+                        <span>projects@dimensions.co</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/the-dimensions/" class="social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/thedimensions.nsk/" class="social-link" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Function to check if an element is in the viewport
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+
+        // Function to handle scroll events
+        function handleScroll() {
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Trigger scroll handler once on page load
+        handleScroll();
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // In a real application, you would send this data to your server
+            // For this demo, we'll just show a success message and reset the form
+            alert('Thank you for your message! We will get back to you soon.');
+
+            // Reset form
+            this.reset();
+
+            // You could also add code here to actually send the form data to your email/server
+            // For example, using Fetch API to send to a backend endpoint
+        });
+
+        // Add smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
