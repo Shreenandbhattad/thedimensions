@@ -252,27 +252,32 @@
         }
 
         .portfolio-item-overlay {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             display: flex;
-            flex-direction: column;
-            justify-content: center; /* Changed to center */
-            align-items: center; /* Added to center horizontally */
-            padding: 1.5rem;
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
             opacity: 0;
             transition: opacity 0.3s;
         }
         
         .portfolio-item-info {
-            color: #fff;
-            transform: translateY(0); /* Reset any vertical transform */
+            text-align: center;
+            transform: scale(0.95);
             transition: transform 0.3s;
-            text-align: center; /* Center text */
+            background: rgba(0, 0, 0, 0.7); /* Optional: Add a background to the info box */
+            padding: 1rem;
+            border-radius: 8px; /* Optional: Rounded corners */
         }
+        
+        .portfolio-item:hover .portfolio-item-info {
+            transform: scale(1); /* Slightly enlarge on hover */
+        }
+
 
         .portfolio-item:hover .portfolio-item-overlay {
             opacity: 1;
