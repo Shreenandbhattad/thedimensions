@@ -199,7 +199,8 @@
 
         .map-container {
             height: 400px;
-            width: 100%;
+            width: 100%; /* Ensures the map takes the full width of its container */
+            max-width: 100%; /* Ensures it doesn't exceed the container's width */
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -209,12 +210,14 @@
             justify-content: center;
             background-color: #222;
         }
-
-        .map-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        
+        .map-container iframe {
+            width: 100%; /* Ensures the iframe takes the full width of the map container */
+            height: 100%; /* Ensures the iframe takes the full height of the map container */
+            border: none;
+            filter: grayscale(30%) brightness(80%);
         }
+
 
         .address-info {
             margin-bottom: 2rem;
