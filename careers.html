@@ -634,34 +634,33 @@
         // Trigger scroll handler once on page load
         handleScroll();
 
-        // Form submission handling
-        document.getElementById('talentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const position = document.getElementById('position').value;
-            const message = document.getElementById('message').value;
-            const resume = document.getElementById('resume').files[0];
-
-            // Here you would typically send this data to a server
-            // For this example, we'll just show an alert and reset the form
-
-            // Simple validation
-            if (!name || !email) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // In a real application, you would send the form data to your server here
-            // For this demo, we'll just show a success message and reset the form
-            alert('Thank you for your application! We will review it and get back to you soon.');
-
-            // Reset form
-            this.reset();
-        });
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+    
+        // Simple validation
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+    
+        // Construct mailto link
+        const mailtoLink = `mailto:projects@thedimensions.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
+        )}`;
+    
+        // Open the mailto link
+        window.location.href = mailtoLink;
+    
+        // Reset form
+        this.reset();
+    });
 
         // Email link for job applications
         document.querySelectorAll('.apply-btn').forEach(btn => {
