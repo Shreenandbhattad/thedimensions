@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -259,21 +260,24 @@
             left: 0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center; /* Changed to center */
+            align-items: center; /* Added to center horizontally */
             padding: 1.5rem;
             opacity: 0;
             transition: opacity 0.3s;
+        }
+        
+        .portfolio-item-info {
+            color: #fff;
+            transform: translateY(0); /* Reset any vertical transform */
+            transition: transform 0.3s;
+            text-align: center; /* Center text */
         }
 
         .portfolio-item:hover .portfolio-item-overlay {
             opacity: 1;
         }
 
-        .portfolio-item-info {
-            color: #fff;
-            transform: translateY(20px);
-            transition: transform 0.3s;
-        }
 
         .portfolio-item:hover .portfolio-item-info {
             transform: translateY(0);
@@ -706,7 +710,7 @@
                 id: 1,
                 title: "Modern Villa",
                 category: "Residential",
-                images: ["1.png"],
+                images: ["1.png", "1_1.png"], // Added the second image
                 details: {
                     location: "Nashik, India",
                     area: "5,000 sq. ft.",
