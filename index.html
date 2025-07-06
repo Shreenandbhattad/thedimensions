@@ -9,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
             color: #fff;
             background-color: #000;
             overflow-x: hidden;
@@ -32,14 +32,8 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            transition: color 0.3s;
-        }
-
-        .logo:hover {
-            color: #a306ff; /* futuristic purple */
+            height: 50px; /* Adjust height as needed */
+            object-fit: contain;
         }
 
         .nav-links {
@@ -55,12 +49,12 @@
             text-decoration: none;
             color: #fff;
             transition: color 0.3s, transform 0.3s;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #a306ff; /* futuristic purple */
+            color: #9A8777; /* Updated to brown */
             transform: translateY(-3px);
         }
 
@@ -71,7 +65,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: #a306ff; /* futuristic purple */
+            background-color: #9A8777; /* Updated to brown */
             transition: width 0.3s;
         }
 
@@ -123,12 +117,14 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards 0.5s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-top: 1rem;
-            color: #fff;
+            color: #ccc;
             position: relative;
             z-index: 1;
             text-transform: uppercase;
@@ -136,6 +132,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards 1s;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .cta-button {
@@ -153,6 +150,8 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards 1.5s;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -182,6 +181,8 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .content-section.visible h2 {
@@ -198,6 +199,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
+            font-family: 'Roboto', sans-serif;
         }
 
         .content-section.visible p {
@@ -271,12 +273,29 @@
                 transform: translateY(0) translateX(0);
             }
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">The Dimensions</div>
+            <div class="logo-container">
+                <img src="logo.png" alt="The Dimensions Logo" class="logo">
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -289,7 +308,6 @@
 
     <section class="hero">
         <div class="hero-overlay"></div>
-        <!-- Video background with the name background.mp4 -->
         <video class="video-background" autoplay loop muted>
             <source src="background.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -301,7 +319,7 @@
         <div class="hero-content">
             <h1>the dimensions</h1>
             <p>innovation space elevating lives</p>
-            <button class="cta-button">Explore Our Work</button>
+            <a href="portfolio.html" class="cta-button">Explore Our Work</a>
         </div>
     </section>
 
